@@ -469,15 +469,15 @@
                   </svg></a></div>
               <div class="title contacts__text">Или оставьте ваши данные и я сам вам напишу:</div>
               <!-- <form enctype="multipart/form-data" method="post" id="form" onsubmit="send(event, 'mail.php')" -->
-              <form action="#" class="contacts__form contacts-form" method="post" id="form"  enctype="multipart/form-data" >
-                <div class="contacts__input"><input class="contacts-input input-reset input-name" name="Name" id="name"
+              <form action="#" class="contacts__form contacts-form" method="post" id="form"  enctype="multipart/form-data" onsubmit="send(event, 'mail.php')">
+                <div class="contacts__input"><input class="contacts-input input-reset input-name" name="name" id="name"
                     type="text" data-validate-field="name" placeholder="Введите имя"> <label for="name">Ваше имя</label>
                 </div>
-                <div class="contacts__input"><input class="contacts-input input-reset input-phone" name="Phone" id="phone"
+                <div class="contacts__input"><input class="contacts-input input-reset input-phone" name="phone" id="phone"
                     type="tel" data-validate-field="tel" placeholder="Введите номер телефона"> <label for="phone">Ваш
                     номер телефона</label></div>
                 <div class="contacts__textarea"><textarea class="contacts-input input-reset input-message"
-                    name="Message" type="text" id="text"
+                    name="message" type="text" id="text"
                     placeholder="Опишите, что вы бы хотели заказать. Так же можете прикрепить ссылочку на социальную сеть, чтобы я с вами связался."></textarea>
                   <label for="text">Ваше сообщение</label></div>
                 <div class="contacts__triggers"><button type="submit"

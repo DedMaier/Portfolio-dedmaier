@@ -39,11 +39,14 @@ try {
   $mail->isSMTP();
   $mail->CharSet = "UTF-8";
   $mail->SMTPAuth   = true;
+  $mail->SMTPDebug = 2;
+  $mail->Debugoutput = function($str, $level) {$GLOBALS['status'][] = $str;};
+
 
   // Настройки вашей почты
   $mail->Host       = 'smtp.mail.ru'; // SMTP сервера вашей почты
   $mail->Username   = 'slava071172@mail.ru'; // Логин на почте
-  $mail->Password   = 'jMuB0fEdjqiunQgy7J2U'; // Пароль на почте
+  $mail->Password   = 'vjUGyBUemEiZC5rMJXBk'; // Пароль на почте
   $mail->SMTPSecure = 'ssl';
   $mail->Port       = 465;
 
@@ -72,8 +75,21 @@ try {
   $mail->Subject = $title;
   $mail->Body = $body;
 
-  $mail->send();
+//   $mail->send();
+
+// } catch (Exception $e) {
+//   $status = "Сообщение не было отправлено. Причина ошибки: {$mail->ErrorInfo}";
+// }
+
+// Проверяем отравленность сообщения
+if ($mail->send()) {$result = "success";} 
+else {$result = "error";}
 
 } catch (Exception $e) {
-  $status = "Сообщение не было отправлено. Причина ошибки: {$mail->ErrorInfo}";
+    $result = "error";
+    $status = "Сообщение не было отправлено. Причина ошибки: {$mail->ErrorInfo}";
 }
+
+// Отображение результата
+echo json_encode(["result" => $result, "resultfile" => $rfile, "status" => $status]);
+
