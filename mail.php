@@ -6,7 +6,8 @@ require 'phpmailer/Exception.php';
 
 // Переменные, которые отправляет пользователь
 $title = "Тема письма";
-$file = $_FILES['file'];
+$file = $_FILES['name','tel','text'];
+// $file = $_FILES['file'];
 
 $c = true;
 //Формирование самого письма
