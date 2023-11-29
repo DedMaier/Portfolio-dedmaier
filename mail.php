@@ -5,12 +5,8 @@ require 'phpmailer/SMTP.php';
 require 'phpmailer/Exception.php';
 
 // Переменные, которые отправляет пользователь
-$name = $_POST['name'];
-$tel = $_POST['tel'];
-$text = $_POST['text'];
-
-// $title = "Тема письма";
-// $file = $_FILES['file'];
+$title = "Тема письма";
+$file = $_FILES['file'];
 
 $c = true;
 //Формирование самого письма
@@ -49,19 +45,19 @@ try {
   $mail->addAddress('slava071172@mail.ru');
   $mail->addAddress('slava19721107@mail.ru');
 
-  //Прикрипление файлов к письму
-  // if (!empty($file['name'][0])) {
-  //   for ($ct = 0; $ct < count($file['tmp_name']); $ct++) {
-  //     $uploadfile = tempnam(sys_get_temp_dir(), sha1($file['name'][$ct]));
-  //     $filename = $file['name'][$ct];
-  //     if (move_uploaded_file($file['tmp_name'][$ct], $uploadfile)) {
-  //         $mail->addAttachment($uploadfile, $filename);
-  //         $rfile[] = "Файл $filename прикреплён";
-  //     } else {
-  //         $rfile[] = "Не удалось прикрепить файл $filename";
-  //     }
-  //   }
-  // }
+  Прикрипление файлов к письму
+  if (!empty($file['name'][0])) {
+    for ($ct = 0; $ct < count($file['tmp_name']); $ct++) {
+      $uploadfile = tempnam(sys_get_temp_dir(), sha1($file['name'][$ct]));
+      $filename = $file['name'][$ct];
+      if (move_uploaded_file($file['tmp_name'][$ct], $uploadfile)) {
+          $mail->addAttachment($uploadfile, $filename);
+          $rfile[] = "Файл $filename прикреплён";
+      } else {
+          $rfile[] = "Не удалось прикрепить файл $filename";
+      }
+    }
+  }
 
   // Отправка сообщения
   $mail->isHTML(true);
